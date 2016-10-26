@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body onload="do_game();">
+
+<script lang="javascript">
+function do_game(){
+  var finished = false; //A flag shows if the game was finished
+  var colors = ['White', 'Silver', 'Red', 'Maroon', 'Cyan', 'Gold', 'Pink']; //colors array
+
+  //This code generates an Integer number between 0 and colors array count-1
+  var target_index = Math.floor(Math.random() * colors.length);
+  //The color itself as a string
+  var target = colors[target_index];
+
+  //The game:
+  alert('Welcome to the color gussing game\nTip : The target color is ' + target);
+  while(!finished){
+    var user_input = prompt('Can you guess the correct color from this set ?\n' + colors.sort().join(', ')); //Displays the sorted array
+
+    if(user_input.toLowerCase() == target.toLowerCase()) { //shouldn't be case senstive
+      finished = true;
+    }
+  }
+}
+</script>
+</body>
+</html>

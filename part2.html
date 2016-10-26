@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script language="javascript">
+    //Variables declerations part
+    //All variables on this part are golbal
+
+    var finished = false; //A flag shows if the game was finished
+    var colors = ['White', 'Silver', 'Red', 'Maroon', 'Cyan', 'Gold', 'Pink']; //colors array
+
+    //This code generates an Integer number between 0 and colors array count-1
+    var target_index = Math.floor(Math.random() * colors.length);
+    //The color itself as a string
+    var target = colors[target_index];
+    var guesses = 0;
+  </script>
+</head>
+<body onload="do_game();">
+
+<script lang="javascript">
+function do_game(){
+
+  //The game:
+  alert('Welcome to the color gussing game\nTip : The target color is ' + target);
+  while(!finished){
+    var user_input = prompt('Can you guess the correct color from this group ?\n' + colors.sort().join(', ')); //Displays the sorted array
+    if(check_guess(user_input)) finished=true; //Stops when check_guess returns true
+  }
+}
+
+function check_guess(input){
+  guesses++; //Every check counts even if it's true
+  if(input == target) { //shouldn't be case senstive
+    myBody=document.getElementsByTagName("body")[0];
+    myBody.style.background=target;
+    alert("Congratulations! you've guessed the right color.\nIt took " + guesses + " guess(es) to finish the game!\nyou can see the color on the background.");
+    return true;
+  }else{
+    if(colors.indexOf(input) == -1){
+      alert('This color is not found on our list\nPlease try again and make sure that the first letter is capital!');
+    }else if (input > target) {
+      alert('Your color is alphabetically higher than mine\nPlease try again!');
+    }else if (input < target) {
+      alert('Your color is alphabetically lower than mine\nPlease try again!');
+    }
+    return false;
+  }
+}
+</script>
+</body>
+</html>
